@@ -180,16 +180,20 @@ if (isset($_GET['xrlFunction']) && ($xrlFunction == "LineEnergy" ||
   		foreach ($shellsArray as $index => $shell) {
   			foreach (array_slice($shellsArray, $index+1) as $shell2) {
 				$realLinename = $shell.$shell2."_LINE";
-				if (defined($realLinename) && ($value = $xrlFunction($myElement, @constant($realLinename))) > 0.0) {
-					$value = sprintf("%g", $value);
-					if ($xrlFunction == "LineEnergy") {
-						$value .=" keV";
+				try {
+					if (defined($realLinename) && ($value = $xrlFunction($myElement, @constant($realLinename))) > 0.0) {
+						$value = sprintf("%g", $value);
+						if ($xrlFunction == "LineEnergy") {
+							$value .=" keV";
+						}
+						$table->setCellContents($counter,0, $shell.$shell2);
+						$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
+						$table->setCellContents($counter,1, $value);
+						$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
+						$counter++;
 					}
-					$table->setCellContents($counter,0, $shell.$shell2);
-					$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
-					$table->setCellContents($counter,1, $value);
-					$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
-					$counter++;
+				} catch (ValueError $e) {
+					// do nothing
 				}
 			}
 		}
@@ -392,19 +396,23 @@ elseif (isset($_GET['xrlFunction']) && ($xrlFunction == "EdgeEnergy" ||
 		$counter=1;
   		foreach ($shellsArray as $shell) {
 			$realShell = @constant($shell."_SHELL");
-			if (($value = $xrlFunction($myElement, $realShell)) > 0.0) {
-				$value = sprintf("%g", $value);
-				if ($xrlFunction == "EdgeEnergy" || $xrlFunction == "AtomicLevelWidth") {
-					$value .=" keV";
+			try {
+				if (($value = $xrlFunction($myElement, $realShell)) > 0.0) {
+					$value = sprintf("%g", $value);
+					if ($xrlFunction == "EdgeEnergy" || $xrlFunction == "AtomicLevelWidth") {
+						$value .=" keV";
+					}
+					else if ($xrlFunction == "ElectronConfig") {
+						$value .=" electrons"; 
+					}
+					$table->setCellContents($counter,0, $shell);
+					$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
+					$table->setCellContents($counter,1, $value);
+					$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
+					$counter++;
 				}
-				else if ($xrlFunction == "ElectronConfig") {
-					$value .=" electrons"; 
-				}
-				$table->setCellContents($counter,0, $shell);
-				$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
-				$table->setCellContents($counter,1, $value);
-				$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
-				$counter++;
+			} catch (ValueError $e) {
+				// do nothing
 			}
 		}
 		$result=$table->toHtml();
@@ -467,16 +475,20 @@ elseif (isset($_GET['xrlFunction']) && ($xrlFunction == "CS_Photo_Partial"
 		$counter=1;
   		foreach ($shellsArray as $shell) {
 			$realShell = @constant($shell."_SHELL");
-			if (($value = $xrlFunction($myElement, $realShell, $Energy)) > 0.0) {
-				$value = sprintf("%g", $value);
-				if ($xrlFunction == "CS_Photo_Partial") {
-					$value .=" cm<sup>2</sup>/g";
+			try {
+				if (($value = $xrlFunction($myElement, $realShell, $Energy)) > 0.0) {
+					$value = sprintf("%g", $value);
+					if ($xrlFunction == "CS_Photo_Partial") {
+						$value .=" cm<sup>2</sup>/g";
+					}
+					$table->setCellContents($counter,0, $shell);
+					$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
+					$table->setCellContents($counter,1, $value);
+					$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
+					$counter++;
 				}
-				$table->setCellContents($counter,0, $shell);
-				$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
-				$table->setCellContents($counter,1, $value);
-				$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
-				$counter++;
+			} catch (ValueError $e) {
+				// do nothing
 			}
 		}
 		$result=$table->toHtml();
@@ -643,13 +655,17 @@ elseif (isset($_GET['xrlFunction']) && ($xrlFunction == "ComptonProfile_Partial"
 		$counter=1;
   		foreach ($shellsArray as $shell) {
 			$realShell = @constant($shell."_SHELL");
-			if (($value = $xrlFunction($myElement, $realShell, $PZ)) > 0.0) {
-				$value = sprintf("%g", $value);
-				$table->setCellContents($counter,0, $shell);
-				$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
-				$table->setCellContents($counter,1, $value);
-				$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
-				$counter++;
+			try {
+				if (($value = $xrlFunction($myElement, $realShell, $PZ)) > 0.0) {
+					$value = sprintf("%g", $value);
+					$table->setCellContents($counter,0, $shell);
+					$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
+					$table->setCellContents($counter,1, $value);
+					$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
+					$counter++;
+				}
+			} catch (ValueError $e) {
+				// do nothing
 			}
 		}
 		$result=$table->toHtml();
