@@ -1095,7 +1095,7 @@ past_error:
 }
 ?>
 
-<h1>xraylib: the official online calculator!</h1>
+<h1>xraylib: the inofficial online calculator!</h1>
 
 <p>This webpage is built around <i>xraylib</i>, an ANSI-C library designed to provide convenient access to physical data in the field of interactions of X-rays with matter. The library comes with bindings to a large number of languages such as Python, Perl, Fortran, PHP (used to power this website) and several others. For all information concerning the library, have a look at the <a href="http://github.com/tschoonj/xraylib"><i>xraylib Github repository</i></a>.</p>
 <br/>
@@ -1569,7 +1569,7 @@ function optionCheckFunction(combo) {
 </script>
 <footer>
 <address>
-Maintained by <a href="mailto:Tom.Schoonjans@gmail.com">Tom Schoonjans</a><br/>
+Created by <a href="mailto:Tom.Schoonjans@gmail.com">Tom Schoonjans</a><br/>
 Thanks to Prof. Laszlo Vincze of Ghent University for providing the webspace.<br/>
 Built using xraylib <?php echo XRAYLIB_MAJOR.".".XRAYLIB_MINOR.".".XRAYLIB_MICRO ?>.
 Development occurs at the <a href="http://github.com/tschoonj/xraylib-web"><i>xraylib-web Github repository</i></a>
