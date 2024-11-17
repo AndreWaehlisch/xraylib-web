@@ -325,14 +325,18 @@ else if (isset($_GET['xrlFunction']) && ($xrlFunction == "CS_FluorLine_Kissel_Ca
   		foreach ($shellsArray as $index => $shell) {
   			foreach (array_slice($shellsArray, $index+1) as $shell2) {
 				$realLinename = $shell.$shell2."_LINE";
-				if (defined($realLinename) && ($value = $xrlFunction($myElement, @constant($realLinename), $Energy)) > 0.0) {
-					$value = sprintf("%g", $value);
-					$value .=" cm<sup>2</sup>/g";
-					$table->setCellContents($counter,0, $shell.$shell2);
-					$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
-					$table->setCellContents($counter,1, $value);
-					$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
-					$counter++;
+				try {
+					if (defined($realLinename) && ($value = $xrlFunction($myElement, @constant($realLinename), $Energy)) > 0.0) {
+						$value = sprintf("%g", $value);
+						$value .=" cm<sup>2</sup>/g";
+						$table->setCellContents($counter,0, $shell.$shell2);
+						$table->setCellAttributes($counter,0, array('class' => 'cellattr'));
+						$table->setCellContents($counter,1, $value);
+						$table->setCellAttributes($counter,1, array('class' => 'cellattr'));
+						$counter++;
+					}
+				} catch (ValueError $e) {
+					// do nothing
 				}
 			}
 		}
