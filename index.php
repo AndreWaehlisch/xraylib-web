@@ -1119,10 +1119,10 @@ past_error:
 
 <p>This webpage is built around <i>xraylib</i>, an ANSI-C library designed to provide convenient access to physical data in the field of interactions of X-rays with matter. The library comes with bindings to a large number of languages such as Python, Perl, Fortran, PHP (used to power this website) and several others. For all information concerning the library, have a look at the <a href="http://github.com/tschoonj/xraylib"><i>xraylib Github repository</i></a>.</p>
 <br/>
-<p>Through the interface provided here, you should be able to perform simple queries from the database. With the instructions provided in the <a href="http://github.com/tschoonj/xraylib/wiki"><i>online manual</i></a>, you will be able to integrate similar queries directly into your own applications using one of the bindings we offer.</p>
+<p>Through the interface provided here, you should be able to perform simple queries from the database. With the instructions provided in the <a href="http://github.com/tschoonj/xraylib/wiki"><i>online manual</i></a>, you will be able to integrate similar queries directly into your own applications using one of the bindings offered.</p>
 <br/>
-<p><i>xraylib</i> is the result of an ongoing research collaboration between the <a href="http://www.esrf.eu">European Synchrotron Radiation Facility (Grenoble, France)</a>, <a href="http://www.ugent.be">Ghent University (Flanders, Belgium)</a> and the <a href="http://www.uniss.it">University of Sassari (Sardinia, Italy)</a>.
-When using this website, or <i>xraylib</i> itself, please cite our <a href="http://dx.doi.org/10.1016/j.sab.2011.09.011">work</a> in your publications.
+<p><i>xraylib</i> is the result of a research collaboration between the <a href="http://www.esrf.eu">European Synchrotron Radiation Facility (Grenoble, France)</a>, <a href="http://www.ugent.be">Ghent University (Flanders, Belgium)</a> and the <a href="http://www.uniss.it">University of Sassari (Sardinia, Italy)</a>.
+When using this website, or <i>xraylib</i> itself, please cite the previous <a href="http://dx.doi.org/10.1016/j.sab.2011.09.011">work</a> in your publications.
 </p>
 
 <br/>
@@ -1590,9 +1590,7 @@ function optionCheckFunction(combo) {
 <footer>
 <address>
 Created by <a href="mailto:Tom.Schoonjans@gmail.com">Tom Schoonjans</a><br/>
-Thanks to Prof. Laszlo Vincze of Ghent University for providing the webspace.<br/>
 Built using xraylib <?php echo XRAYLIB_MAJOR.".".XRAYLIB_MINOR.".".XRAYLIB_MICRO ?>.
-Development occurs at the <a href="http://github.com/tschoonj/xraylib-web"><i>xraylib-web Github repository</i></a>
 </address>
 </footer>
 </body>
